@@ -1,7 +1,16 @@
 # wolpage
 simple page to send wake-on-lan magic packets with.
 
-# dependencies
+## notes
+this project is written with `quart`, not `flask`. therefore, you need to use
+an ASGI runtime, not WSGI.
+
+the service unit and setup guide has been written with `hypercorn` as the 
+ASGI runtime in mind. if you prefer another runtime such as `uvicorn` or 
+`granian`, ignore all mentions of hypercorn and setup your preferred runtime 
+instead.
+
+## dependencies
 make sure your system has `python3-pyotp`, `python3-quart`, `etherwake`, `python3-hypercorn` and `python3` installed.
 
 debian/ubuntu/rpios:
@@ -19,7 +28,7 @@ apt install -y python3-pyotp python3-quart python3-hypercorn etherwake
 - edit `conf.toml` to add the settings
   - `title`     -- the title that shows up in the titlebar and on the page heading.
   - `secret`    -- your topt secret - use something long and secure!! note it down for later.
-  - `pc_mac`    -- the target mac address must use colons as seperators!
+  - `pc_mac`    -- the target mac address - must use colons as seperators!
   - `interface` -- the network interface to send the packet from; check ifconfig
 - copy `wolpage.service` to `/etc/systemd/system` with `cp wolpage.service /etc/systemd/system/wolpage.service`
 - reload systemd so it loads `wolpage.service`: `systemctl daemon-reload`
