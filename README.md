@@ -42,5 +42,5 @@ apt install -y python3-pyotp python3-quart python3-hypercorn etherwake
 >>> pyotp.totp.TOTP('my_secret').provisioning_uri(issuer_name='wol')
 'otpauth://totp/wol:Secret?secret=my_secret&issuer=wol'
 ```
-- encode the link in a secure QR Code encoder (e.g. zbar, [this](https://kazuhikoarase.github.io/qrcode-generator/js/demo/))
+- encode the link in a trustworthy QR Code encoder (e.g. zbar, [this](https://kazuhikoarase.github.io/qrcode-generator/js/demo/))
 - scan the resulting QR Code into your OTP manager (e.g. FreeOTP, andOTP, Google Authenticator)
