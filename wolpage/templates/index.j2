@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <style>
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
+    <title>{{ title }}</title>
+</head>
+
+<body>
+    <main class="container">
+        {% if ok %}
+        <article style="background-color:LimeGreen;">
+            <h1 style="color:black">Success.</h1>
+        </article>
+        {% else %}
+        <form action="/" method="post">
+            <article>
+                <header><h1>{{ title }}</h1></header>
+                {% if err %}
+                <article style="background-color:gold;">
+                    <h2 style=" color:black;">An error occurred.</h2>
+                </article>
+                {% elif wrong %}
+                <article style="background-color:crimson;">
+                    <h2 style="color:white;">Could not verify OTP.</h2>
+                </article>
+                {% endif %}
+                <label for="otp">
+                    Your OTP:
+                    <input type="number" name="otp" id="otp" />
+                </label>
+                <button type="submit">Submit</button>
+            </article>
+        </form>
+        {% endif %}
+    </main>
+</body>
+
+</html>

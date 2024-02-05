@@ -1,0 +1,13 @@
+[Unit]
+Description=wolpage
+After=network.target
+
+[Service]
+User=wolpage
+Group=wolpage
+WorkingDirectory=/opt/wolpage
+ExecStart=hypercorn -b '127.0.0.1:30303' -w 1 main:create_app()
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
