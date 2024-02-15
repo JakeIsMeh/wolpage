@@ -3,22 +3,22 @@ import tomllib as toml
 import subprocess
 from quart import Quart, render_template, request
 
+conf = {}
+with open("./conf.toml", "rb") as f:
+    conf = toml.load(f);
+
 def create_app():
     app = Quart(__name__)
 
     @app.get("/")
     async def page():
-        return await render_template("./index.j2")
+        return await render_template("./index.j2", title=conf["title"])
 
     @app.post("/")
     async def post():
         try:
-            conf = {}
             r = await request.form
             p = r.get('otp')
-
-            with open("./conf.toml", "rb") as f:
-                conf = toml.load(f);
 
             totp = pyotp.TOTP(conf["secret"])
 
